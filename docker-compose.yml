@@ -1,0 +1,32 @@
+services:
+  discovery-service:
+    build: {context: ., args: {MODULE: discovery-service}}
+    ports: ["8761:8761"]
+  config-service:
+    build: {context: ., args: {MODULE: config-service}}
+    ports: ["8888:8888"]
+  customer-service:
+    build: {context: ., args: {MODULE: customer-service}}
+    ports: ["8081:8081"]
+    depends_on: [discovery-service, config-service]
+    environment:
+      EUREKA_URL: http://discovery-service:8761/eureka/
+      CONFIG_SERVER_URL: http://config-service:8888
+  ebank-service:
+    build: {context: ., args: {MODULE: ebank-service}}
+    ports: ["8082:8082"]
+    depends_on: [customer-service]
+    environment:
+      EUREKA_URL: http://discovery-service:8761/eureka/
+      CONFIG_SERVER_URL: http://config-service:8888
+  gateway-service:
+    build: {context: ., args: {MODULE: gateway-service}}
+    ports: ["8080:8080"]
+    depends_on: [ebank-service]
+    environment:
+      EUREKA_URL: http://discovery-service:8761/eureka/
+      CONFIG_SERVER_URL: http://config-service:8888
+  web-client:
+    build: ./web-client
+    ports: ["4200:80"]
+    depends_on: [gateway-service]
