@@ -1,5 +1,14 @@
 # Projet de synthèse — Spring Boot · Spring Cloud · Agentic AI · MCP
 
+**Academic case study · Java 21 · Spring Cloud · Spring AI · MCP · Angular**
+
+> **English overview for reviewers:** A distributed banking-services learning project covering service discovery, API gateway routing, resilient service-to-service communication, and a read-only AI assistant integrated through Model Context Protocol (MCP). The repository documents implemented components, architecture, and limitations; it is **not a production banking platform** and integrated runtime tests remain to be completed locally.
+
+[![Java](https://img.shields.io/badge/Java-21-ED8B00?logo=openjdk&logoColor=white)](https://openjdk.org/)
+[![Spring](https://img.shields.io/badge/Spring_Cloud-Microservices-6DB33F?logo=spring&logoColor=white)](https://spring.io/projects/spring-cloud)
+[![MCP](https://img.shields.io/badge/MCP-AI_Tools-5B5BD6)](https://modelcontextprotocol.io/)
+
+
 **ENSET Mohammedia · Systèmes Distribués et DevOps · Enseignant : Mohamed YOUSSFI · II-BDCC3**
 
 Cette réalisation suit l'énoncé **« Projet - Systèmes Distribués »** fourni dans Google Classroom et son PDF **« Projet de synthèse Spring Boot, Spring Cloud, Agentic AI »**. Elle reprend l'architecture demandée (Customer Service, EBank Service, OpenFeign, Resilience4j, Spring Cloud Gateway, Discovery, Configuration, Spring AI, MCP Streamable HTTP et clients REST/Angular/Telegram/Discord) dans un code indépendant des vidéos.
