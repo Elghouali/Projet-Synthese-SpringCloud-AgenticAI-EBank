@@ -1,0 +1,48 @@
+server:
+  port: 8082
+spring:
+  application:
+    name: ebank-service
+  config:
+    import: "optional:configserver:${CONFIG_SERVER_URL:http://localhost:8888}"
+  datasource:
+    url: "jdbc:h2:mem:ebank;DB_CLOSE_DELAY=-1"
+    driver-class-name: org.h2.Driver
+    username: sa
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+  cloud:
+    openfeign:
+      client:
+        config:
+          default:
+            connectTimeout: 2000
+            readTimeout: 4000
+  ai:
+    mcp:
+      server:
+        name: ebank-mcp
+        type: SYNC
+        protocol: STREAMABLE
+        instructions: "Read-only bank account and transaction tools. Never perform money transfers using MCP."
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URL:http://localhost:8761/eureka/}
+  instance:
+    prefer-ip-address: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+resilience4j:
+  circuitbreaker:
+    instances:
+      customerLookup:
+        failureRateThreshold: 50
+        slidingWindowSize: 10
+        waitDurationInOpenState: 10s
+        permittedNumberOfCallsInHalfOpenState: 2

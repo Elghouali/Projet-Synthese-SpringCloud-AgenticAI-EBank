@@ -1,0 +1,8 @@
+package ma.enset.synthese.ebank.client;
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.*;
+@FeignClient(name="customer-service")
+public interface CustomerClient {
+ @GetMapping("/api/customers/{id}") CustomerView find(@PathVariable("id") Long id);
+ record CustomerView(Long id,String name,String email){}
+}

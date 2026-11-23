@@ -1,0 +1,107 @@
+{
+  "info": {
+    "name": "ENSET Projet de Synthèse - EBank + Agentic AI",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "gateway",
+      "value": "http://localhost:8080"
+    },
+    {
+      "key": "accountId",
+      "value": "PASTE_CREATED_ACCOUNT_UUID"
+    }
+  ],
+  "item": [
+    {
+      "name": "List customers",
+      "request": {
+        "method": "GET",
+        "url": "{{gateway}}/api/customers"
+      }
+    },
+    {
+      "name": "Create account",
+      "request": {
+        "method": "POST",
+        "url": "{{gateway}}/api/accounts",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"customerId\":1,\"type\":\"CURRENT\",\"initialBalance\":1000}"
+        }
+      }
+    },
+    {
+      "name": "Get accounts",
+      "request": {
+        "method": "GET",
+        "url": "{{gateway}}/api/accounts"
+      }
+    },
+    {
+      "name": "Deposit",
+      "request": {
+        "method": "POST",
+        "url": "{{gateway}}/api/accounts/{{accountId}}/deposit",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"amount\":200}"
+        }
+      }
+    },
+    {
+      "name": "Withdraw",
+      "request": {
+        "method": "POST",
+        "url": "{{gateway}}/api/accounts/{{accountId}}/withdraw",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"amount\":50}"
+        }
+      }
+    },
+    {
+      "name": "Transaction history",
+      "request": {
+        "method": "GET",
+        "url": "{{gateway}}/api/accounts/{{accountId}}/operations"
+      }
+    },
+    {
+      "name": "Chatbot (AI profile only)",
+      "request": {
+        "method": "POST",
+        "url": "{{gateway}}/api/chat/ask",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"message\":\"Liste les clients bancaires\"}"
+        }
+      }
+    }
+  ]
+}

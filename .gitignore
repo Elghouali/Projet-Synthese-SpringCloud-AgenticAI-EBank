@@ -1,0 +1,12 @@
+**/target/
+**/.idea/
+**/node_modules/
+**/dist/
+**/.angular/
+.DS_Store
+.env
+.env.*
+!.env.example
+*.log
+*.iml
+__pycache__/

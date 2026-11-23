@@ -1,0 +1,12 @@
+services:
+  chatbot-service:
+    build: {context: ., args: {MODULE: chatbot-service}}
+    ports: ["8083:8083"]
+    depends_on: [customer-service, ebank-service, discovery-service]
+    environment:
+      EUREKA_URL: http://discovery-service:8761/eureka/
+      CONFIG_SERVER_URL: http://config-service:8888
+      CUSTOMER_MCP_URL: http://customer-service:8081
+      EBANK_MCP_URL: http://ebank-service:8082
+      OPENAI_API_KEY: ${OPENAI_API_KEY:?Set a new OPENAI_API_KEY in .env before enabling AI}
+      OPENAI_MODEL: ${OPENAI_MODEL:-gpt-4.1-mini}

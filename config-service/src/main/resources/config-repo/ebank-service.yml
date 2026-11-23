@@ -1,0 +1,4 @@
+app:
+  banking:
+    currency: MAD
+    max-transfer: 50000
